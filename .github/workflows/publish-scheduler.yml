@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Trigger scheduled post publishing
         run: |
-          curl -X POST "${{ secrets.APP_URL }}/api/cron/publish-scheduled" \
-            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
-            -H "Content-Type: application/json" \
+          curl -X GET "${{ secrets.APP_URL }}/api/cron/publish-scheduled" \
+            -H "x-cron-secret: manual-trigger" \
             --fail --silent --show-error

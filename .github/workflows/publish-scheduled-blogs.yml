@@ -1,0 +1,17 @@
+name: Publish Scheduled Blogs
+
+on:
+  schedule:
+    # Every 15 minutes
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Manual trigger for testing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish scheduled blog posts
+        run: |
+          curl -X GET "${{ secrets.APP_URL }}/api/cron/publish-scheduled-blogs" \
+            -H "x-cron-secret: manual-trigger" \
+            --fail --silent --show-error

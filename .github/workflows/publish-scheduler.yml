@@ -13,5 +13,5 @@ jobs:
       - name: Trigger scheduled post publishing
         run: |
           curl -X GET "${{ secrets.APP_URL }}/api/cron/publish-scheduled" \
-            -H "x-cron-secret: manual-trigger" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
             --fail --silent --show-error
